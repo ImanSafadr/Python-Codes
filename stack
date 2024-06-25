@@ -1,0 +1,34 @@
+class MinStack:
+    def __init__(self):
+        self.s = []
+        self.minstack = []
+
+    def push(self, val: int):
+        self.s.append(val)
+        if not self.minstack or val <= self.getmin():
+            self.minstack.append(val)
+
+    def pop(self):
+        if self.top() == self.getmin():
+            self.minstack.pop()
+        self.s.pop()
+
+    def top(self):
+        return self.s[-1]
+
+    def getmin(self):
+        return self.minstack[-1]
+
+if __name__ == "__main__":
+    minstack = MinStack()
+
+    minstack.push(3)
+    minstack.push(5)
+    print("Minimum Element:", minstack.getmin())
+
+    minstack.push(2)
+    minstack.push(1)
+    print("Minimum Element:", minstack.getmin())
+
+    minstack.pop()
+    print("Minimum Element:", minstack.getmin())
